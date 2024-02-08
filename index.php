@@ -13,7 +13,7 @@ include 'config.php';
     <title>PHP CRUD</title>
 </head>
 <body>
-   
+// Navbar start here
 <nav>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -34,39 +34,67 @@ include 'config.php';
   </div>
 </nav>
 </nav>
+// Navbar end here
 
 <Section>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">SL</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Class</th>
+      <th scope="col">Roll</th>
+      <th scope="col">Address</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+
+    <?php
+    
+    $query = "SELECT * FROM Students";
+
+    $result = mysqli_query($connection, $query);
+    if($result){
+// Serial Number incriment start here
+      $serialNumber = 1;
+// Loop while start here
+    while($row = mysqli_fetch_assoc($result)){
+
+       $id      = $row['id'];
+       $name    = $row['name'];
+       $roll    = $row['roll'];
+       $phone   = $row['phone'];
+       $email   = $row['email'];
+       $address = $row['address'];
+       $class   = $row['class'];
+
+      echo '<tr>
+        <th>'.$serialNumber.'</th>
+        <td>'.$name.'</td>
+        <td>'.$roll.'</td>
+        <td>'.$phone.'</td>
+        <th>'.$email.'</th>
+        <td>'.$address.'</td>
+        <td>'.$class.'</td>
+        <td>
+// Button start here
+          <a href="" class="btn btn-primary">Edit</a>
+          <a href="delete.php?id='.$id.'" class="btn btn-danger">Delete</a>
+// Button end here
+        </td>
+    </tr>';
+    $serialNumber++;
+// Serial Number incriment end here
+    };
+    }
+    ?>
+
   </tbody>
 </table>
 </Section>
-<h1>jjjjjj</h1>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
