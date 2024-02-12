@@ -1,32 +1,33 @@
 
 <?php
 include 'config.php';
+// Data Edit start here
+$id = $_GET['id'];
+$query = "SELECT * FROM Students WHERE  id = $id";
+$result = mysqli_query($connection, $query);
+$row = mysqli_fetch_assoc($result);
+
+$id     = $row['id'];
+$name   = $row['name'];
+$roll   = $row['roll'];
+$phone  = $row['phone'];
+$email  = $row['email'];
+$class  = $row['class'];
+$address = $row['address']
 
 if(isset($_POST['submit'])) {
-  $name    = $_POST['name'];
-  $email   = $_POST['email'];
-  $phone   = $_POST['phone'];
-  $roll    = $_POST['roll'];
-  $address = $_POST['address'];
-  $class   = $_POST['class'];
+    $name   = $_POST['name'];
+    $roll   = $_POST['roll'];
+    $phone  = $_POST['phone'];
+    $email  = $_POST['email'];
+    $class  = $_POST['class'];
+    $address = $_POST['address'];
 
-
-
-  $query= "INSERT INTO students(name, roll, phone, email, address, class) VALUES ('$name', '$roll', '$phone', '$email', '$address', '$class')";
-
-  $success = mysqli_query( mysql: $connection, query: $query);
-  
-  if($success){
-    echo 'Data is inserted successfully!';
-  }
-  else{
-    echo 'Failed to insert. try again!!';
-  }
+    $sql = "UPDATE students SET name = '$name', email = '$email', phone = '$phone', class = '$class', roll = '$roll', address = '$address', WHERE id = $id";
+    $result = mysqli_query($connection, $query);
 }
 
-
 ?>
-
 
 
 
@@ -63,10 +64,10 @@ if(isset($_POST['submit'])) {
 </nav>
 
 <section>
-<div class="container">
+    <div class="container">
     <form class="row g-3" action="" method="post">
   <div class="col-md-6">
-    <label for="inputname" class="form-label">Name</label>
+    <label for="inputname" class="form-label">Full Name</label>
     <input type="name" name="name" value="<?php echo $name?>" class="form-control" id="inputname">
   </div>
   <div class="col-12">

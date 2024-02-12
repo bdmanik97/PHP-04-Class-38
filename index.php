@@ -13,7 +13,6 @@ include 'config.php';
     <title>PHP CRUD</title>
 </head>
 <body>
-// Navbar start here
 <nav>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -34,7 +33,6 @@ include 'config.php';
   </div>
 </nav>
 </nav>
-// Navbar end here
 
 <Section>
 <table class="table">
@@ -42,11 +40,11 @@ include 'config.php';
     <tr>
       <th scope="col">SL</th>
       <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Class</th>
       <th scope="col">Roll</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
       <th scope="col">Address</th>
+      <th scope="col">Class</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -80,10 +78,8 @@ include 'config.php';
         <td>'.$address.'</td>
         <td>'.$class.'</td>
         <td>
-// Button start here
-          <a href="" class="btn btn-primary">Edit</a>
+          <a href="edit.php?id='.$id.'" class="btn btn-primary">Edit</a>
           <a href="delete.php?id='.$id.'" class="btn btn-danger">Delete</a>
-// Button end here
         </td>
     </tr>';
     $serialNumber++;
